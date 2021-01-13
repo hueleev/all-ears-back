@@ -1,13 +1,15 @@
-package org.hyungwon.test;
+package com.allears.board;
 
+import com.allears.common.pagination.PaginationRequest;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-public class BoardVO {
+public class BoardVO extends PaginationRequest {
     private int boardSeq;
     private String boardTitle;
     private String boardCn;
+    private byte[] boardPhotoSbst;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+9")
     private Date cretDt;
     private String cretrId;
@@ -37,6 +39,14 @@ public class BoardVO {
 
     public void setBoardCn(String boardCn) {
         this.boardCn = boardCn;
+    }
+
+    public byte[] getBoardPhotoSbst() {
+        return boardPhotoSbst;
+    }
+
+    public void setBoardPhotoSbst(byte[] boardPhotoSbst) {
+        this.boardPhotoSbst = boardPhotoSbst;
     }
 
     public Date getCretDt() {

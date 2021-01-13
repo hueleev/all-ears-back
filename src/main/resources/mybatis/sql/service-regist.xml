@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "WEB-INF/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allears.service.Regist.RegistDAO">
+    <!-- 중복 ID 확인 조회 -->
+    <select id="duplicatedId" resultType="int">
+        SELECT COUNT(USER_SEQ)
+        FROM TB_USER
+        <where>
+            USER_ID = #{userId}
+        </where>
+    </select>
+
+    <!-- 회원 가입 -->
+    <insert id="insertUser" parameterType="com.allears.service.UserVO" useGeneratedKeys="true" keyProperty="userSeq">
+        INSERT INTO TB_USER
+        (
+            USER_ID,
+            USER_PWD,
+            <if test="userNm != null and userNm != ''">USER_NM,</if>
+            <if test="userEmail != null and userEmail != ''">USER_EMAIL,</if>
+            CRET_DT
+        )
+        VALUES (
+            #{userId},
+            #{userPwd},
+            <if test="userNm != null and userNm != ''">#{userNm},</if>
+            <if test="userEmail != null and userEmail != ''">#{userEmail},</if>
+            now()
+        )
+    </insert>
+</mapper>
