@@ -54,7 +54,7 @@
     </select>
 
     <!-- 게시판 등록 -->
-    <insert id="insertBoard" parameterType="com.allears.board.BoardVO">
+    <insert id="insertBoard" parameterType="com.allears.board.BoardVO" useGeneratedKeys="true" keyProperty="boardSeq">
         INSERT INTO TB_BOARD (
             BOARD_TITLE,
             BOARD_CN,
@@ -69,4 +69,12 @@
             NOW()
         )
     </insert>
+
+    <!-- 게시판 삭제 -->
+    <delete id="deleteBoard" parameterType="int">
+        DELETE FROM TB_BOARD
+        <where>
+            BOARD_SEQ = #{boardSeq}
+        </where>
+    </delete>
 </mapper>

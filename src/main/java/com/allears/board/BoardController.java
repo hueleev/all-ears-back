@@ -69,4 +69,15 @@ public class BoardController {
         return boardService.insertBoard(request);
     }
 
+    /**
+     * 게시판 삭제
+     * @param boardSeq
+     * @return
+     */
+    @DeleteMapping("/{boardSeq}")
+    public ResultVO deleteBoard(@PathVariable int boardSeq) {
+        logger.debug(">>> [DELETE] /board >>> deleteBoard >>> boardSeq[{}]", boardSeq);
+        return boardService.deleteBoard(boardSeq);
+    }
+
 }

@@ -108,6 +108,13 @@ public class BoardServiceImpl implements BoardService {
      */
     @Override
     public ResultVO deleteBoard(int boardSeq) {
-        return null;
+        ResultVO resultVO = new ResultVO();
+        int result = boardDAO.deleteBoard(boardSeq);
+        if (result > 0) {
+            resultVO.setValid(true);
+            resultVO.setData(boardSeq);
+            resultVO.setMessage(Constants.Result.SUCCESS);
+        }
+        return resultVO;
     }
 }
