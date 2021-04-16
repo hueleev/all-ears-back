@@ -70,6 +70,18 @@ public class BoardController {
     }
 
     /**
+     * 게시판 수정
+     * @param request
+     * @return
+     * @throws IOException
+     */
+    @PutMapping("")
+    public ResultVO updateBoard(MultipartHttpServletRequest request) throws IOException {
+        logger.debug(">>> [PUT] /board >>> updateBoard");
+        return boardService.updateBoard(request);
+    }
+    
+    /**
      * 게시판 삭제
      * @param boardSeq
      * @return

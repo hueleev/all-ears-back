@@ -70,7 +70,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public ResultVO insertBoard(MultipartHttpServletRequest request) throws IOException {
 
-       // MultipartFile mFile = request.getFile("file");
+        MultipartFile mFile = request.getFile("file");
 
         BoardVO boardVO = new BoardVO();
         String boardTitle = request.getParameter("boardTitle");
@@ -78,7 +78,7 @@ public class BoardServiceImpl implements BoardService {
 
         boardVO.setBoardTitle(boardTitle);
         boardVO.setBoardCn(boardCn);
-       // if (mFile != null) { boardVO.setBoardPhotoSbst(Base64.encodeBase64(mFile.getBytes())); }
+        if (mFile != null) { boardVO.setBoardPhotoSbst(Base64.encodeBase64(mFile.getBytes())); }
         boardVO.setCretrId("test");
 
         ResultVO resultVO = new ResultVO();
@@ -93,13 +93,33 @@ public class BoardServiceImpl implements BoardService {
 
     /**
      * 게시판 수정
-     * @param boardVO
+     * @param request
      * @return
      */
     @Override
-    public ResultVO updateBoard(BoardVO boardVO) {
-        return null;
-    }
+    public ResultVO updateBoard(MultipartHttpServletRequest request) throws IOException {
+        MultipartFile mFile = request.getFile("file");
+
+        BoardVO boardVO = new BoardVO();
+        String boardTitle = request.getParameter("boardTitle");
+        String boardCn = request.getParameter("boardCn");
+        int boardSeq = Integer.parseInt(request.getParameter("boardSeq"));
+
+        boardVO.setBoardSeq(boardSeq);
+        boardVO.setBoardTitle(boardTitle);
+        boardVO.setBoardCn(boardCn);
+        if (mFile != null) { boardVO.setBoardPhotoSbst(Base64.encodeBase64(mFile.getBytes())); }
+        boardVO.setCretrId("test");
+
+        ResultVO resultVO = new ResultVO();
+        int result = boardDAO.updateBoard(boardVO);
+        if (result > 0) {
+            resultVO.setValid(true);
+            resultVO.setData(boardVO);
+            resultVO.setMessage(Constants.Result.SUCCESS);
+        }
+        return resultVO;
+    };
 
     /**
      * 게시판 삭제

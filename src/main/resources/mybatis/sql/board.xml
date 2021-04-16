@@ -70,6 +70,23 @@
         )
     </insert>
 
+    <!-- 게시판 수정 -->
+    <insert id="updateBoard" parameterType="com.allears.board.BoardVO" >
+        INSERT INTO TB_BOARD (
+        BOARD_TITLE,
+        BOARD_CN,
+        BOARD_PHOTO_SBST,
+        CRETR_ID,
+        CRET_DT
+        ) VALUES (
+        #{boardTitle},
+        #{boardCn},
+        #{boardPhotoSbst},
+        #{cretrId},
+        NOW()
+        )
+    </insert>
+
     <!-- 게시판 삭제 -->
     <delete id="deleteBoard" parameterType="int">
         DELETE FROM TB_BOARD

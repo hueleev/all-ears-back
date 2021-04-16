@@ -22,6 +22,9 @@ public interface BoardDAO {
     /** 게시판 등록 */
     int insertBoard(BoardVO boardVO);
 
+    /** 게시판 수정 */
+    int updateBoard(BoardVO boardVO);
+
     /** 게시판 삭제 */
     int deleteBoard(@Param("boardSeq") int boardSeq);
 }

@@ -21,7 +21,7 @@ public interface BoardService {
     ResultVO insertBoard(MultipartHttpServletRequest request) throws IOException;
 
     /** update board */
-    ResultVO updateBoard(BoardVO boardVO);
+    ResultVO updateBoard(MultipartHttpServletRequest request) throws IOException;
 
     /** delete board */
     ResultVO deleteBoard(int boardSeq);
